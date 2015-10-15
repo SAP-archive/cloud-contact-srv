@@ -1,0 +1,80 @@
+
+/*
+ * navbar
+ */
+body
+{
+    padding-top: 15px;
+}
+
+.navbar
+{
+    margin-bottom: 15px;
+}
+
+@media (min-width: 768px)
+{
+	body
+    {
+        padding-top: 30px;
+    }
+
+    .navbar
+    {
+        margin-bottom: 30px;
+    }
+
+    .navbar-nav>li>a
+    {
+        padding-top: 20px;
+        padding-bottom: 15px;
+    }
+
+}
+
+h1,
+.h1 {
+  font-size: 20px;
+}
+
+h2,
+.h2 {
+  font-size: 18px;
+}
+
+h3,
+.h3 {
+  font-size: 16px;
+}
+
+h4,
+.h4 {
+  font-size: 14px;
+}
+
+h5,
+.h5 {
+  font-size: 12px;
+}
+
+h6,
+.h6 {
+  font-size: 10px;
+}
+
+.navbar-brand
+{
+  font-family: 'Pacifico', cursive;
+  font-weight: 200;
+  font-size: 200%;
+}
+
+@media(max-width:767px)
+{
+.navbar-brand
+{
+	font-family: 'Pacifico', cursive;
+	font-weight: 200;
+  font-size: 150%;
+}
+}

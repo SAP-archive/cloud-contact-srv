@@ -1,0 +1,24 @@
+{
+        "salutation": "MR",
+        "firstName": "Donald",
+        "lastName": "Duck",
+        "addresses": [
+            {
+                "street": "3111 World Dr",
+                "street2":"c/o Walt Disney World",
+                "city": "Orlando",
+                "zipCode": "32830",
+                "country": "US"
+            }
+        ],
+        "phoneNumbers": [
+            {
+                "number": "+1 407 824-4321"
+            }
+        ],
+        "emailAddresses": [
+            {
+                "email": "donald.duck@disney.com"
+            }
+        ]
+    }

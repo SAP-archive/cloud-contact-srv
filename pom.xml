@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.sap.hana.cloud.samples</groupId>
+  <artifactId>contact-srv</artifactId>
+  <version>0.0.2-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>contact-srv-provider</module>
+  	<module>contact-srv-api</module>
+  	<module>contact-srv-client</module>
+  </modules>
+
+  <organization>
+        <name>SAP SE</name>
+        <url>http://www.sap.com</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>SAP HANA Cloud Platform</name>
+            <url>http://hcp.sap.com</url>
+            <organization>SAP SE</organization>
+            <organizationUrl>http://www.sap.com/</organizationUrl>
+        </developer>
+    </developers>
+
+  <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <url>https://github.com/SAP/cloud-enterprise-granny</url>
+</project>

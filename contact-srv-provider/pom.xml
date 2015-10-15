@@ -1,0 +1,550 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.sap.hana.cloud.samples</groupId>
+    <artifactId>contact-srv</artifactId>
+    <version>0.0.2-SNAPSHOT</version>
+  </parent>
+  <artifactId>contact-srv-provider</artifactId>
+  <packaging>war</packaging>
+
+  	<properties>
+		<java-version>1.7</java-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<org.springframework-version>4.1.4.RELEASE</org.springframework-version>
+		<org.springframework.data-version>1.7.1.RELEASE</org.springframework.data-version>
+		<org.aspectj-version>1.8.4</org.aspectj-version>
+		<org.slf4j-version>1.7.10</org.slf4j-version>
+		<org.codehaus.jackson-version>1.9.13</org.codehaus.jackson-version>
+		<org.apache.cxf-version>3.0.3</org.apache.cxf-version>
+		<org.codehaus.enunciate-version>1.31</org.codehaus.enunciate-version>
+		<org.springframework.cloud-version>1.1.0.RELEASE</org.springframework.cloud-version>
+		<com.sap.hana.cloud-version>1.0.0.RELEASE</com.sap.hana.cloud-version>
+		<org.liquibase.liquibase-core.version>3.2.0</org.liquibase.liquibase-core.version>
+
+		<com.sap.cloud.neo.api-version>1.76.13</com.sap.cloud.neo.api-version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<name>Maven Central Repository</name>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+
+		<repository>
+			<id>repository.springframework.maven.release</id>
+			<name>Spring Framework Maven Release Repository</name>
+			<url>http://maven.springframework.org/release</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
+		</repository>
+
+		<repository>
+			<id>eclipselink</id>
+			<name>EclipseLink Maven Repository</name>
+			<url>http://download.eclipse.org/rt/eclipselink/maven.repo/</url>
+		</repository>
+
+	</repositories>
+
+	<dependencies>
+
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.1</version>
+		</dependency>
+
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework-version}</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-beans</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${org.springframework.data-version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-beans</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- Apache Jakarta Commons -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<!-- Derby -->
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derbyclient</artifactId>
+			<version>10.9.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>10.9.1.0</version>
+		</dependency>
+
+		<!-- EclipseLink (and JPA) -->
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>javax.persistence</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+
+		<!-- AOP -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${org.springframework-version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-beans</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>2.1_3</version>
+		</dependency>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- @Inject -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Jackson JSON Mapper -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>${org.codehaus.jackson-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-xc</artifactId>
+			<version>${org.codehaus.jackson-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-jaxrs</artifactId>
+			<version>${org.codehaus.jackson-version}</version>
+		</dependency>
+
+		<!-- Apache CXF -->
+        <dependency>
+           <groupId>org.apache.cxf</groupId>
+           <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+           <version>${org.apache.cxf-version}</version>
+        </dependency>
+         <dependency>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-rs-client</artifactId>
+          <version>${org.apache.cxf-version}</version>
+        </dependency>
+
+		<!-- Validation -->
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>1.1.0.Final</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>5.1.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator-cdi</artifactId>
+			<version>5.1.1.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.glassfish</groupId>
+		    <artifactId>javax.el</artifactId>
+		    <version>3.0.1-b05</version>
+		</dependency>
+
+		<!-- Google Phone Lib -->
+		<dependency>
+		    <groupId>com.googlecode.libphonenumber</groupId>
+		    <artifactId>libphonenumber</artifactId>
+		    <version>5.7</version>
+		</dependency>
+
+		<!-- enunciate (REST API documentation tool) -->
+		<dependency>
+			<groupId>org.codehaus.enunciate</groupId>
+			<artifactId>enunciate-docs</artifactId>
+			<version>${org.codehaus.enunciate-version}</version>
+		</dependency>
+
+		<!-- CloudFoundry/Heroku -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-cloudfoundry-connector</artifactId>
+			<version>${org.springframework.cloud-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-heroku-connector</artifactId>
+			<version>${org.springframework.cloud-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-spring-service-connector</artifactId>
+			<version>${org.springframework.cloud-version}</version>
+		</dependency>
+
+		<!-- SAP HANA Cloud Platform -->
+		<dependency>
+	       <groupId>com.sap.hana.cloud</groupId>
+	       <artifactId>spring-cloud-sap-connector</artifactId>
+		   <version>${com.sap.hana.cloud-version}</version>
+		</dependency>
+		<dependency>
+	       <groupId>com.sap.hana.cloud</groupId>
+	       <artifactId>spring-cloud-cloudfoundry-hana-service-connector</artifactId>
+		   <version>${com.sap.hana.cloud-version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>com.sap.cloud</groupId>
+		    <artifactId>neo-java-web-api</artifactId>
+		    <version>${com.sap.cloud.neo.api-version}</version>
+		    <scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sap.hana.cloud.samples</groupId>
+			<artifactId>contact-srv-api</artifactId>
+			<version>${version}</version>
+		</dependency>
+
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<warName>ROOT</warName>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+					<id>compile</id>
+					<phase>compile</phase>
+					<configuration>
+						<target>
+							<property name="compile_classpath" refid="maven.compile.classpath" />
+							<property name="runtime_classpath" refid="maven.runtime.classpath" />
+							<property name="test_classpath" refid="maven.test.classpath" />
+							<property name="plugin_classpath" refid="maven.plugin.classpath" />
+
+							<echo message="compile classpath: ${compile_classpath}" />
+							<echo message="runtime classpath: ${runtime_classpath}" />
+							<echo message="test classpath: ${test_classpath}" />
+							<echo message="plugin classpath: ${plugin_classpath}" />
+						</target>
+					</configuration>
+					<goals>
+						<goal>run</goal>
+					</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- enunciate - REST documentation tool -->
+			<plugin>
+				<groupId>org.codehaus.enunciate</groupId>
+				<artifactId>maven-enunciate-plugin</artifactId>
+				<version>${org.codehaus.enunciate-version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>docs</goal>
+						</goals>
+						<configuration>
+							<docsDir>${project.basedir}/src/main/webapp/docs</docsDir>
+							<configFile>${project.basedir}/src/main/resources/META-INF/enunciate/enunciate.xml</configFile>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- delete old API documentation as part of clean -->
+			<plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-clean-plugin</artifactId>
+	            <version>2.4.1</version>
+	            <configuration>
+	                <filesets>
+	                    <fileset>
+	                        <directory>${project.basedir}/src/main/webapp/docs</directory>
+	                        <includes>
+	                            <include>**/*</include>
+	                        </includes>
+	                        <followSymlinks>false</followSymlinks>
+	                    </fileset>
+	                </filesets>
+	            </configuration>
+	        </plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<!-- Eclipse m2e settings only - influence on the Maven build itself -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-antrun-plugin
+										</artifactId>
+										<versionRange>
+											[1.7,)
+										</versionRange>
+										<goals>
+											<goal>run</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute></execute>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.enunciate
+										</groupId>
+										<artifactId>
+											maven-enunciate-plugin
+										</artifactId>
+										<versionRange>
+											[1.28,)
+										</versionRange>
+										<goals>
+											<goal>docs</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	 <organization>
+        <name>SAP SE</name>
+        <url>http://www.sap.com</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>SAP HANA Cloud Platform</name>
+            <url>http://hcp.sap.com</url>
+            <organization>SAP SE</organization>
+            <organizationUrl>http://www.sap.com/</organizationUrl>
+        </developer>
+    </developers>
+
+</project>

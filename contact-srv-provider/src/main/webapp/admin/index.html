@@ -1,0 +1,117 @@
+<!doctype html lang="en">
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <title>Addressbook Service</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <link rel="shortcut icon" href="../resources/img/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../resources/img/ensw_granny_logo_144.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../resources/img/ensw_granny_logo_114.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../resources/img/ensw_granny_logo_72.png">
+  <link rel="apple-touch-icon-precomposed" href="../resources/img/ensw_granny_logo_57.png">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	 
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+	  <script src="../resources/js/html5shiv.js"></script>
+	  <script src="../resources/js/respond.min.js"></script>
+  <![endif]-->
+ 
+  <!-- Granny --> 
+  <link rel="stylesheet" href="../resources/css/contact-srv.css" />
+
+  <!-- fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+  
+  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+  <script src="../resources/js/modernizr-1.7.min.js"></script> 
+
+</head>
+
+<body>
+  <div class="container">
+	<div class="navbar navbar-default">
+	   <div class="navbar-header">
+	     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	       <span class="icon-bar"></span>
+	       <span class="icon-bar"></span>
+	       <span class="icon-bar"></span>
+	     </button>
+	     <a class="navbar-brand" href="../" data-pjax><img src="../resources/img/icon_9727.png" style="width: 40px; height: 40px; margin-top: -10px; margin-right: 10px;" class="hidden-xs hidden-sm"> Addressbook Service</a>
+	   </div>
+	   <div class="navbar-collapse collapse">
+	     <ul class="nav navbar-nav">
+	       <li><a href="/docs">API</a></li>
+	     </ul>
+	   </div><!--/.nav-collapse -->
+	 </div>
+    
+    <div id="main">
+		<div id="breadcrumb">
+	      <ol class="xbreadcrumbs breadcrumb" id="breadcrumbs">
+	        <li class="active"><a href="index.html" class="home">Home</a>
+	        	 <!-- TODO
+	        	 -->
+	        </li>
+	      </ol>
+	    </div>
+    
+	<div class="row">
+        <div class="col-sm-8">
+		      <div class="page-header">
+		      	<h1>Administration Console</h1>
+			  </div>
+		      <p>
+			    Stay tuned! ;)
+			  </p>
+		
+		</div>
+		<div class="col-sm-3 col-sm-offset-1">
+			<div class="panel panel-default">
+				<div class="panel-heading">REST API</div>
+			    <div class="panel-body">
+			      <ul class="list-group">
+			        <li class="list-group-item"><a href="#">ABC</a></li>
+			        <li class="list-group-item"><a href="#">DEF</a></li>
+			      </ul>
+			    </div>
+			</div>
+		</div>
+	</div> <!-- row -->
+    </div>
+  </div><!--/container-->
+
+  <!-- JavaScript at the bottom for fast page loading -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="../resources/js/bootstrap.min.js"></script>
+      
+  <!--manage the navigation menu-->
+  <script src="../resources/js/xbreadcrumbs.js"></script>
+  <script>
+    $(function() {
+      $('#breadcrumbs').xBreadcrumbs();
+    });
+  </script>
+
+
+  <!--[if lt IE 7 ]>
+    <script src="/js/dd_belatedpng.js"></script>
+    <script>DD_belatedPNG.fix("img, .png_bg"); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
+  <![endif]-->
+</body>
+</html>

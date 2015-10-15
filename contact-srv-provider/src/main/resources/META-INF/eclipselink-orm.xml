@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings
+	xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.eclipse.org/eclipselink/xsds/persistence/orm http://www.eclipse.org/eclipselink/xsds/eclipselink_orm_2_5.xsd"
+	version="2.5">
+	
+	<mapped-superclass class="com.sap.hana.cloud.samples.contactsrv.model.BaseObject" access="FIELD">
+        <optimistic-locking type="VERSION_COLUMN" cascade="true" />
+        <pre-persist method-name="generateAuditInformation"/>
+    	<pre-update method-name="updateAuditInformation"/>      
+        <attributes>
+            <id name="id">
+            	<column name="ID" length="36"/>
+            </id>
+            <basic name="createdAt">
+                <column name="CREATION_DATE"/>
+                <temporal>TIMESTAMP</temporal>
+            </basic>
+            <basic name="lastModifiedAt">
+                <column name="MODIFICATION_DATE"/>
+                <temporal>TIMESTAMP</temporal>
+            </basic>
+            <basic name="createdBy">
+                <column name="CREATED_BY" length="20"/>
+            </basic>
+            <basic name="lastModifiedBy">
+                <column name="MODIFIED_BY" length="20"/>
+            </basic>
+             <version name="version"/>
+        </attributes>   
+    </mapped-superclass>
+	
+	<entity name="Address" class="com.sap.hana.cloud.samples.contactsrv.model.Address" access="FIELD">
+        <table name="CONTACT_ADDRESS"/>
+        <attributes>
+            <basic name="type">
+                <column name="TYPE"/>
+                <enumerated>STRING</enumerated>
+            </basic>
+            <basic name="street">
+                <column name="STREET" length="30"/>
+            </basic>
+            <basic name="street2">
+                <column name="STREET2" length="30"/>
+            </basic>
+            <basic name="city">
+                <column name="CITY" length="30"/>
+            </basic>
+            <basic name="zipCode">
+                <column name="ZIP" length="8"/>
+            </basic>
+            <basic name="state">
+                <column name="STATE" length="20"/>
+            </basic>
+            <basic name="country">
+                <column name="COUNTRY" length="3"/>
+            </basic>
+        </attributes>           
+    </entity>
+    
+    <entity name="Contact" class="com.sap.hana.cloud.samples.contactsrv.model.Contact" access="FIELD">
+        <multitenant>
+		    <tenant-discriminator-column name="TENANT_ID" context-property="eclipselink.tenant-id" length="36"/>
+		</multitenant>
+        <table name="CONTACT_CONTACT"/>
+        <attributes>
+            <basic name="salutation">
+                <column name="SALUTATION"/>
+                <enumerated>STRING</enumerated>
+            </basic>
+            <basic name="title">
+                <column name="TITLE"/>
+                <enumerated>STRING</enumerated>
+            </basic>
+            <basic name="firstName">
+                <column name="FIRSTNAME" length="30"/>
+            </basic>
+            <basic name="lastName">
+                <column name="LASTNAME" length="30"/>
+            </basic>
+            <one-to-many name="addresses" target-entity="com.sap.hana.cloud.samples.contactsrv.model.Address" fetch="EAGER" >
+            	 <join-column name="CONTACT_ID" referenced-column-name="ID"/>
+            	 <cascade><cascade-all/></cascade>
+            </one-to-many>
+            <one-to-many name="phoneNumbers" target-entity="com.sap.hana.cloud.samples.contactsrv.model.PhoneNumber" fetch="EAGER">
+            	<join-column name="CONTACT_ID" referenced-column-name="ID"/>
+            	<cascade><cascade-all/></cascade>
+            </one-to-many>
+            <one-to-many name="emailAddresses" target-entity="com.sap.hana.cloud.samples.contactsrv.model.EmailAddress" fetch="EAGER">
+            	<join-column name="CONTACT_ID" referenced-column-name="ID"/>
+            	<cascade><cascade-all/></cascade>
+            </one-to-many>
+        </attributes>           
+    </entity>
+    
+    <entity name="EmailAddress" class="com.sap.hana.cloud.samples.contactsrv.model.EmailAddress" access="FIELD">
+        <table name="CONTACT_EMAIL"/>
+        <attributes>
+            <basic name="type">
+                <column name="TYPE"/>
+                <enumerated>STRING</enumerated>
+            </basic>
+            <basic name="email">
+                <column name="EMAIL" length="70"/>
+            </basic>
+        </attributes>           
+    </entity>
+    
+    <entity name="PhoneNumber" class="com.sap.hana.cloud.samples.contactsrv.model.PhoneNumber" access="FIELD">
+        <table name="CONTACT_PHONE"/>
+        <attributes>
+            <basic name="type">
+                <column name="TYPE"/>
+                <enumerated>STRING</enumerated>
+            </basic>
+            <basic name="number">
+                <column name="NUMBER" length="30"/>
+            </basic>
+        </attributes>           
+    </entity>
+    
+</entity-mappings>

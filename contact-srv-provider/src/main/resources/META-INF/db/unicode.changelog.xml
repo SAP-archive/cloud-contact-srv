@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<databaseChangeLog  
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"  
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">  
+  	
+	<changeSet id="Fix issues with HANA column size for UUIDs" author="Matthias Steiner">  
+		<preConditions onFail="CONTINUE">
+        	<tableExists tableName="CONTACT_CONTACT" /> 
+			<!-- 
+        	<not>
+        		<dbms type="derby"/>
+        	</not>
+        	 --> 
+        </preConditions>
+        <modifyDataType tableName="CONTACT_CONTACT" columnName="ID" newDataType="NVARCHAR(72)"/>
+        <modifyDataType tableName="CONTACT_CONTACT" columnName="TENANT_ID" newDataType="NVARCHAR(72)"/>
+        
+        <modifyDataType tableName="CONTACT_ADDRESS" columnName="ID" newDataType="NVARCHAR(72)"/>
+        <modifyDataType tableName="CONTACT_ADDRESS" columnName="CONTACT_ID" newDataType="NVARCHAR(72)"/>
+        
+        <modifyDataType tableName="CONTACT_PHONE" columnName="ID" newDataType="NVARCHAR(72)"/>
+        <modifyDataType tableName="CONTACT_PHONE" columnName="CONTACT_ID" newDataType="NVARCHAR(72)"/>
+        
+        <modifyDataType tableName="CONTACT_EMAIL" columnName="ID" newDataType="NVARCHAR(72)"/>   
+        <modifyDataType tableName="CONTACT_EMAIL" columnName="CONTACT_ID" newDataType="NVARCHAR(72)"/> 
+  	
+  	</changeSet>
+  	
+</databaseChangeLog>  

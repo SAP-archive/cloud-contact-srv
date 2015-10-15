@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"	
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation=
+	   "http://www.springframework.org/schema/mvc 	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans 	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+		
+	<!-- 
+	<import resource="classpath:/META-INF/spring/root-context.xml"/>
+	 -->
+	
+	<!-- Enables the Spring MVC @Controller programming model --> 
+	<mvc:annotation-driven validator="validator" conversion-service="conversionService"/> 
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/"/>
+	<mvc:resources mapping="/docs/**" location="/docs/"/>
+
+	<context:component-scan base-package="com.sap.hana.cloud.samples.contactsrv.client.web" />
+
+	<!-- maps request URLs to Controller names -->
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+	</bean>
+
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles-defs.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- custom formatters -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+	  <property name="formatters">
+	    <set>
+	      <bean class="com.sap.hana.cloud.samples.contactsrv.client.web.formatter.SalutationFormatter" />
+	      <bean class="com.sap.hana.cloud.samples.contactsrv.client.web.formatter.TitleFormatter" />
+	      <bean class="com.sap.hana.cloud.samples.contactsrv.client.web.formatter.CommunicationTypeFormatter" />
+	      <bean class="org.springframework.format.datetime.DateFormatter">
+	      	<property name="pattern" value="yyyy-MM-dd'T'HH:mm:ss.SSSZ" />
+	      </bean>
+	    </set>
+	  </property>
+	</bean>
+	
+</beans>
