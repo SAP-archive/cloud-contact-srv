@@ -378,7 +378,7 @@
 		<dependency>
 			<groupId>com.sap.hana.cloud.samples</groupId>
 			<artifactId>contact-srv-api</artifactId>
-			<version>${version}</version>
+			<version>${project.version}</version>
 		</dependency>
 
 
